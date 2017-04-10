@@ -34,7 +34,7 @@ android {
         dev {
             buildConfigField "String", "APP_NAME", '"УД-Курьер"'
             buildConfigField "String", "YANDEX_API_URL", '""'
-            buildConfigField "String", "YANDEX_DEV_KEY", '""'
+            buildConfigField "String", "YANDEX_API_KEY_FILE_NAME", '"yandexApiKey.txt"'
         }
     }
     packagingOptions {
