@@ -1,30 +1,39 @@
-package com.blahblah.yandextestapp;
+package com.blahblah.yandextestapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.blahblah.yandextestapp.BuildConfig;
+import com.blahblah.yandextestapp.R;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_translate:
+                    mTextMessage.setText(R.string.title_translate);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_history:
+                    mTextMessage.setText(R.string.title_history);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_settings:
+                    mTextMessage.setText(R.string.title_settings);
                     return true;
             }
             return false;
@@ -36,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        InputStream inputStream = null;
+        try {
+            inputStream = getAssets().open(BuildConfig.YANDEX_API_KEY_FILE_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scanner scanner = new Scanner(inputStream);
+        String apiKey = scanner.hasNext() ? scanner.next() : null;
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, "onCreate: " + apiKey);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
