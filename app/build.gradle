@@ -33,7 +33,7 @@ android {
     productFlavors {
         dev {
             buildConfigField "String", "APP_NAME", '"УД-Курьер"'
-            buildConfigField "String", "YANDEX_API_URL", '""'
+            buildConfigField "String", "YANDEX_API_URL", '"https://translate.yandex.net/api/v1.5/"'
             buildConfigField "String", "YANDEX_API_KEY_FILE_NAME", '"yandexApiKey.txt"'
         }
     }
