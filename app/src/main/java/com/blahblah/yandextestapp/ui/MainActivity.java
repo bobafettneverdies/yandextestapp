@@ -4,57 +4,47 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.ScrimInsetsFrameLayout;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.blahblah.yandextestapp.BuildConfig;
 import com.blahblah.yandextestapp.R;
+import com.blahblah.yandextestapp.api.ApiProvider;
+import com.blahblah.yandextestapp.di.components.ActivityMainComponent;
+import com.blahblah.yandextestapp.di.components.DaggerActivityMainComponent;
+import com.blahblah.yandextestapp.di.modules.ContextModule;
+import com.blahblah.yandextestapp.di.modules.DataModule;
+import com.blahblah.yandextestapp.di.modules.NetworkModule;
 import com.blahblah.yandextestapp.ui.base.BaseActivity;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
+import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    @Inject
+    ApiProvider apiProvider;
+
     private TextView mTextMessage;
     private ScrimInsetsFrameLayout contentLayout;
+
+    private ActivityMainComponent component;
+
+    public ActivityMainComponent getComponent() {
+        return component;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        InputStream inputStream = null;
+        component = DaggerActivityMainComponent.builder()
+                .contextModule(new ContextModule(this))
+                .dataModule(new DataModule())
+                .networkModule(new NetworkModule())
+                .build();
 
-        try {
-            inputStream = getAssets().open(BuildConfig.YANDEX_API_KEY_FILE_NAME);
-            Scanner scanner = new Scanner(inputStream);
-            String apiKey = scanner.hasNext() ? scanner.next() : null;
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.d(TAG, "onCreate: " + apiKey);
-        } catch (IOException e) {
-            Log.e(TAG, "Problem with opening " + BuildConfig.YANDEX_API_KEY_FILE_NAME);
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            Log.e(TAG, String.format("If u want to re-use this project code u need to add file %s with your Yandex Translate API key to assets folder", BuildConfig.YANDEX_API_KEY_FILE_NAME));
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    Log.e(TAG, "Problem with closing " + BuildConfig.YANDEX_API_KEY_FILE_NAME);
-                    e.printStackTrace();
-                }
-            }
-        }
+        component.inject(this);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
