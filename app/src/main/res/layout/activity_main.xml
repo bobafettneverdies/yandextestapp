@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.blahblah.yandextestapp.ui.MainActivity">
 
-    <FrameLayout
+    <android.support.design.internal.ScrimInsetsFrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -24,7 +24,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/title_translate" />
 
-    </FrameLayout>
+    </android.support.design.internal.ScrimInsetsFrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

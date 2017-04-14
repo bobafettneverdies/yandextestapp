@@ -2,6 +2,7 @@ package com.blahblah.yandextestapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.ScrimInsetsFrameLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,44 +11,22 @@ import android.widget.TextView;
 
 import com.blahblah.yandextestapp.BuildConfig;
 import com.blahblah.yandextestapp.R;
+import com.blahblah.yandextestapp.ui.base.BaseActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private TextView mTextMessage;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_translate:
-                    mTextMessage.setText(R.string.title_translate);
-                    return true;
-                case R.id.navigation_history:
-                    mTextMessage.setText(R.string.title_history);
-                    return true;
-                case R.id.navigation_settings:
-                    mTextMessage.setText(R.string.title_settings);
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    private ScrimInsetsFrameLayout contentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-        setContentView(R.layout.activity_main);
 
         InputStream inputStream = null;
 
@@ -79,11 +58,33 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnNavigationItemSelectedListener(this);
+        contentLayout = (ScrimInsetsFrameLayout)findViewById(R.id.content);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_translate:
+                mTextMessage.setText(R.string.title_translate);
+                return true;
+            case R.id.navigation_history:
+                mTextMessage.setText(R.string.title_history);
+                return true;
+            case R.id.navigation_settings:
+                mTextMessage.setText(R.string.title_settings);
+                return true;
+        }
+        return false;
     }
 }
