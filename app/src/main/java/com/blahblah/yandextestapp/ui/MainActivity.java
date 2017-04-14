@@ -50,19 +50,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         InputStream inputStream = null;
+
         try {
             inputStream = getAssets().open(BuildConfig.YANDEX_API_KEY_FILE_NAME);
+            Scanner scanner = new Scanner(inputStream);
+            String apiKey = scanner.hasNext() ? scanner.next() : null;
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "onCreate: " + apiKey);
         } catch (IOException e) {
+            Log.e(TAG, "Problem with opening " + BuildConfig.YANDEX_API_KEY_FILE_NAME);
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            Log.e(TAG, String.format("If u want to re-use this project code u need to add file %s with your Yandex Translate API key to assets folder", BuildConfig.YANDEX_API_KEY_FILE_NAME));
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "Problem with closing " + BuildConfig.YANDEX_API_KEY_FILE_NAME);
+                    e.printStackTrace();
+                }
+            }
         }
-        Scanner scanner = new Scanner(inputStream);
-        String apiKey = scanner.hasNext() ? scanner.next() : null;
-        try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.d(TAG, "onCreate: " + apiKey);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
