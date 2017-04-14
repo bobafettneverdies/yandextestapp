@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/translation_input"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/translation_input_height"
+            android:gravity="top"
+            android:layout_margin="@dimen/translation_input_margin"
+            android:padding="@dimen/translation_input_padding"
+            android:background="@drawable/bg_stroke_gray"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@android:color/black"
+            android:maxLength="10000"
+            tools:text="Привет" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/translation_result_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@android:color/black"
+            tools:text="Hi" />
+
+    </LinearLayout>
+
+</ScrollView>
