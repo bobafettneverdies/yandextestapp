@@ -1,4 +1,4 @@
-package com.blahblah.yandextestapp.ui;
+package com.blahblah.yandextestapp.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

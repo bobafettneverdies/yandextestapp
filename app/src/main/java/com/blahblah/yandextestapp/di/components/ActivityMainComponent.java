@@ -3,7 +3,7 @@ package com.blahblah.yandextestapp.di.components;
 import com.blahblah.yandextestapp.di.modules.ContextModule;
 import com.blahblah.yandextestapp.di.modules.DataModule;
 import com.blahblah.yandextestapp.di.modules.NetworkModule;
-import com.blahblah.yandextestapp.ui.MainActivity;
+import com.blahblah.yandextestapp.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 
