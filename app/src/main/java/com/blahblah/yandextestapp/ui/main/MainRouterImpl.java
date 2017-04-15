@@ -60,13 +60,15 @@ public class MainRouterImpl implements MainRouter {
 
         if (lastFragment != null) {
             if (lastFragment instanceof TranslationFragment) {
-                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left,
+                        R.anim.slide_in_right, R.anim.slide_out_right);
             } else {
-                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,
+                        R.anim.slide_in_left, R.anim.slide_out_left);
             }
         }
 
-        transaction.replace(fragmentContainerId, fragment, fragment.getClass().getName());
+        transaction.replace(R.id.main_content, fragment, fragment.getClass().getName());
         transaction.commit();
         lastFragment = fragment;
     }
