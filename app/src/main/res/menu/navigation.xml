@@ -12,9 +12,4 @@
         android:icon="@drawable/ic_bookmark_black_24dp"
         tools:ignore="MenuTitle" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        tools:ignore="MenuTitle" />
-
 </menu>
