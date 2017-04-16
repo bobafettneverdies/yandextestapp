@@ -3,6 +3,7 @@ package com.blahblah.yandextestapp.api;
 import android.support.annotation.NonNull;
 
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
+import com.blahblah.yandextestapp.domain.translation.TranslationDto;
 
 import javax.inject.Singleton;
 
@@ -20,5 +21,5 @@ import rx.Observable;
 public interface ApiProvider {
     Observable<Response<LanguageHub>> getLanguages(String uiLanguage);
 
-    Observable<Response<LanguageHub>> translate(@NonNull String text, @NonNull String language, String format, String options);
+    Observable<Response<TranslationDto>> translate(@NonNull String text, @NonNull String srcLanguage, @NonNull String dstLanguage, String format, String options);
 }

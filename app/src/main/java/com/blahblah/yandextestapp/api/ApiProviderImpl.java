@@ -3,6 +3,7 @@ package com.blahblah.yandextestapp.api;
 import android.support.annotation.NonNull;
 
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
+import com.blahblah.yandextestapp.domain.translation.TranslationDto;
 
 import javax.inject.Inject;
 
@@ -34,7 +35,7 @@ public class ApiProviderImpl implements ApiProvider {
     }
 
     @Override
-    public Observable<Response<LanguageHub>> translate(@NonNull String text, @NonNull String language, String format, String options) {
-        return apiInterface.translate(apiKey, text, language, format, options);
+    public Observable<Response<TranslationDto>> translate(@NonNull String text, @NonNull String srcLanguage, @NonNull String dstLanguage, String format, String options) {
+        return apiInterface.translate(apiKey, text, String.format("%s-%s", srcLanguage, dstLanguage), format, options);
     }
 }

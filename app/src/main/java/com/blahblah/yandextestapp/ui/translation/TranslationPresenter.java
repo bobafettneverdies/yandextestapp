@@ -2,6 +2,7 @@ package com.blahblah.yandextestapp.ui.translation;
 
 import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
+import com.blahblah.yandextestapp.domain.translation.TranslationDto;
 import com.blahblah.yandextestapp.utils.EmptySubscriber;
 
 import javax.inject.Inject;
@@ -60,8 +61,28 @@ public class TranslationPresenter {
         }
     }
 
+    public void translate(String source) {
+        if (srcLanguage != null && dstLanguage != null) {
+            apiProvider.translate(source, srcLanguage, dstLanguage, null, null)
+                    .subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError(Throwable::printStackTrace)
+                    .doOnNext(response -> {
+                        if (response.code() == 200 && response.body() != null) {
+                            TranslationDto translationDto = response.body();
+                            translationView.setTranslation(translationDto.toString());
+                        } else {
+                            translationView.setTranslation("");
+                        }
+                    })
+                    .subscribe(new EmptySubscriber<>());
+        }
+    }
+
     private void setLanguagesOnView() {
         translationView.setSrcLanguage(languageHub.languages.get(srcLanguage));
         translationView.setDstLanguage(languageHub.languages.get(dstLanguage));
     }
+
 }
