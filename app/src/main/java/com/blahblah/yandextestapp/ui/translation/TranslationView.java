@@ -11,7 +11,5 @@ public interface TranslationView {
 
     void setDstLanguage(String language);
 
-    void swapLanguages();
-
     void setTranslation(String translation);
 }

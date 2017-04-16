@@ -8,6 +8,8 @@ import android.view.View;
 import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.ui.base.BaseFragment;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 /**
@@ -16,7 +18,7 @@ import javax.inject.Inject;
  * komyakovds@byndyusoft.com
  * on 14.04.2017.
  */
-public class TranslationFragment extends BaseFragment implements TranslationView {
+public class TranslationFragment extends BaseFragment implements TranslationView, View.OnClickListener {
 
     private AppCompatTextView srcLanguageView;
     private AppCompatTextView dstLanguageView;
@@ -37,6 +39,10 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         dstLanguageView = (AppCompatTextView) view.findViewById(R.id.translation_dst_language);
         translationInput = (AppCompatEditText) view.findViewById(R.id.translation_src_input);
         translationResultView = (AppCompatTextView) view.findViewById(R.id.translation_result_view);
+
+        view.findViewById(R.id.translation_swap_languages_btn).setOnClickListener(this);
+
+        presenter.getLanguageHub(Locale.getDefault().getLanguage());
     }
 
     @Override
@@ -50,14 +56,17 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void swapLanguages() {
-        String dstLanguage = dstLanguageView.getText().toString();
-        dstLanguageView.setText(srcLanguageView.getText());
-        srcLanguageView.setText(dstLanguage);
+    public void setTranslation(String translation) {
+        translationResultView.setText(translation);
     }
 
     @Override
-    public void setTranslation(String translation) {
-        translationResultView.setText(translation);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.translation_swap_languages_btn:
+                break;
+            default:
+                break;
+        }
     }
 }
