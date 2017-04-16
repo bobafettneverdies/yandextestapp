@@ -12,7 +12,7 @@ import com.blahblah.yandextestapp.ui.base.BaseFragment;
  * komyakovds@byndyusoft.com
  * on 14.04.2017.
  */
-public class TranslationFragment extends BaseFragment {
+public class TranslationFragment extends BaseFragment  implements TranslationView {
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_translation;
@@ -20,6 +20,26 @@ public class TranslationFragment extends BaseFragment {
 
     @Override
     protected void onViewInflated(@NonNull View view) {
+
+    }
+
+    @Override
+    public void setSrcLanguage(String language) {
+
+    }
+
+    @Override
+    public void setDstLanguage(String language) {
+
+    }
+
+    @Override
+    public void swapLanguages() {
+
+    }
+
+    @Override
+    public void setTranslation(String translation) {
 
     }
 }
