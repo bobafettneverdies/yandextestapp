@@ -14,7 +14,9 @@ public class Translation implements RealmModel, Comparable<Translation> {
 
     public String result;
 
-    public String lang;
+    public String srcLanguage;
+
+    public String dstLanguage;
 
     public long time;
 
