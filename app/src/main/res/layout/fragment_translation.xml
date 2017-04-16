@@ -66,6 +66,7 @@
                 android:background="@drawable/bg_stroke_gray"
                 android:textSize="@dimen/text_medium"
                 android:textColor="@color/black"
+                android:inputType="textCapSentences|textAutoCorrect"
                 android:maxLength="10000"
                 tools:text="Привет" />
 

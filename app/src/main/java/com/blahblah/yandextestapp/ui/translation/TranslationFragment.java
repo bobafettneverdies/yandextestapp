@@ -75,6 +75,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
+    public void setSourceText(String text) {
+        translationInput.setText(text);
+    }
+
+    @Override
     public void setTranslation(String translation) {
         translationResultView.setText(translation);
     }

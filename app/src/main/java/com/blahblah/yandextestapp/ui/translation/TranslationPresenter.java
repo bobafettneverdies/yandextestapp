@@ -21,6 +21,7 @@ public class TranslationPresenter {
     private LanguageHub languageHub;
     private String srcLanguage;
     private String dstLanguage;
+    private String translationText;
 
     private final ApiProvider apiProvider;
     private final TranslationView translationView;
@@ -56,8 +57,8 @@ public class TranslationPresenter {
             String oldDstLanguage = dstLanguage;
             dstLanguage = srcLanguage;
             srcLanguage = oldDstLanguage;
-
             setLanguagesOnView();
+            translationView.setSourceText(translationText);
         }
     }
 
@@ -71,10 +72,11 @@ public class TranslationPresenter {
                     .doOnNext(response -> {
                         if (response.code() == 200 && response.body() != null) {
                             TranslationDto translationDto = response.body();
-                            translationView.setTranslation(translationDto.toString());
+                            translationText = translationDto.toString();
                         } else {
-                            translationView.setTranslation("");
+                            translationText = "";
                         }
+                        translationView.setTranslation(translationText);
                     })
                     .subscribe(new EmptySubscriber<>());
         }
