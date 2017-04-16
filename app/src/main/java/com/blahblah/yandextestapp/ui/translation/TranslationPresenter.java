@@ -30,7 +30,7 @@ public class TranslationPresenter {
         this.translationView = translationView;
     }
 
-    public void getLanguageHub(String uiLanguage) {
+    public void getLanguageHub(String uiLanguage, String enLanguage) {
         apiProvider.getLanguages(uiLanguage)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -40,20 +40,28 @@ public class TranslationPresenter {
                     if (response.code() == 200 && response.body() != null) {
                         this.languageHub = response.body();
                         if (languageHub.languages.size() > 2) {
-                            srcLanguage = languageHub.languages.entrySet()
-                                    .iterator()
-                                    .next()
-                                    .getKey();
-                            dstLanguage = languageHub.languages.entrySet()
-                                    .iterator()
-                                    .next()
-                                    .getKey();
+                            srcLanguage = uiLanguage;
+                            dstLanguage = enLanguage;
 
-                            translationView.setSrcLanguage(languageHub.languages.get(srcLanguage));
-                            translationView.setDstLanguage(languageHub.languages.get(dstLanguage));
+                            setLanguagesOnView();
                         }
                     }
                 })
                 .subscribe(new EmptySubscriber<>());
+    }
+
+    public void swapLanguages() {
+        if (languageHub != null && srcLanguage != null && dstLanguage != null) {
+            String oldDstLanguage = dstLanguage;
+            dstLanguage = srcLanguage;
+            srcLanguage = oldDstLanguage;
+
+            setLanguagesOnView();
+        }
+    }
+
+    private void setLanguagesOnView() {
+        translationView.setSrcLanguage(languageHub.languages.get(srcLanguage));
+        translationView.setDstLanguage(languageHub.languages.get(dstLanguage));
     }
 }

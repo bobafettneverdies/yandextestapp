@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Yandex Test App</string>
+    <string name="app_name" translatable="false">Yandex Test App</string>
     <string name="title_translate">Translate</string>
     <string name="title_history">History</string>
-    <string name="title_settings">Settings</string>
 </resources>
