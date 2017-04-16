@@ -3,11 +3,7 @@ package com.blahblah.yandextestapp.ui.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.view.menu.MenuView;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.api.ApiProvider;
