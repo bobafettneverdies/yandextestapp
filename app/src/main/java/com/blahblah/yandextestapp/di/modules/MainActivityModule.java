@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.blahblah.yandextestapp.R;
+import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.ui.history.HistoryFragment;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
 import com.blahblah.yandextestapp.ui.main.MainRouter;
 import com.blahblah.yandextestapp.ui.main.MainRouterImpl;
 import com.blahblah.yandextestapp.ui.translation.TranslationFragment;
+import com.blahblah.yandextestapp.ui.translation.TranslationPresenter;
 
 import javax.inject.Singleton;
 
@@ -28,25 +30,16 @@ public class MainActivityModule {
     @Provides
     @Singleton
     @NonNull
-    TranslationFragment provideTranslationFragment() {
-        return new TranslationFragment();
+    MainRouter provideMainRouter(@NonNull Context context) {
+        return new MainRouterImpl(((MainActivity) context).getSupportFragmentManager());
     }
 
     @Provides
     @Singleton
     @NonNull
-    HistoryFragment provideHistoryFragment() {
-        return new HistoryFragment();
-    }
-
-    @Provides
-    @Singleton
-    @NonNull
-    MainRouter provideMainRouter(@NonNull Context context,
-                                 @NonNull TranslationFragment translationFragment,
-                                 @NonNull HistoryFragment historyFragment) {
-        return new MainRouterImpl(((MainActivity) context).getSupportFragmentManager(),
-                R.id.main_content, translationFragment, historyFragment);
+    TranslationPresenter provideTranslationPresenter(@NonNull ApiProvider apiProvider,
+                                                     @NonNull MainRouter mainRouter) {
+        return new TranslationPresenter(apiProvider, mainRouter.getTranslationFragment());
     }
 
 }

@@ -1,5 +1,8 @@
 package com.blahblah.yandextestapp.ui.main;
 
+import com.blahblah.yandextestapp.ui.history.HistoryFragment;
+import com.blahblah.yandextestapp.ui.translation.TranslationFragment;
+
 /**
  * Created by Dmitrii Komiakov
  * komiakov.dmitrii@gmail.com
@@ -10,4 +13,8 @@ public interface MainRouter {
     void openTranslationFragment();
 
     void openHistoryFragment();
+
+    TranslationFragment getTranslationFragment();
+
+    HistoryFragment getHistoryFragment();
 }

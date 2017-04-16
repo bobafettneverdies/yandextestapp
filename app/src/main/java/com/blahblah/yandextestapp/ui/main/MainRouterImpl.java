@@ -23,20 +23,15 @@ public class MainRouterImpl implements MainRouter {
     private BaseFragment lastFragment;
 
     private final FragmentManager fragmentManager;
-    private final int fragmentContainerId;
 
     private final TranslationFragment translationFragment;
     private final HistoryFragment historyFragment;
 
     @Inject
-    public MainRouterImpl(FragmentManager fragmentManager,
-                          int fragmentContainerId,
-                          TranslationFragment translationFragment,
-                          HistoryFragment historyFragment) {
+    public MainRouterImpl(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
-        this.fragmentContainerId = fragmentContainerId;
-        this.translationFragment = translationFragment;
-        this.historyFragment = historyFragment;
+        this.translationFragment = new TranslationFragment();
+        this.historyFragment = new HistoryFragment();
     }
 
     @Override
@@ -47,6 +42,16 @@ public class MainRouterImpl implements MainRouter {
     @Override
     public void openHistoryFragment() {
         changeFragment(historyFragment);
+    }
+
+    @Override
+    public TranslationFragment getTranslationFragment() {
+        return translationFragment;
+    }
+
+    @Override
+    public HistoryFragment getHistoryFragment() {
+        return historyFragment;
     }
 
     private void changeFragment(@NonNull final BaseFragment fragment) {

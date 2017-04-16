@@ -5,6 +5,7 @@ import com.blahblah.yandextestapp.di.modules.DataModule;
 import com.blahblah.yandextestapp.di.modules.MainActivityModule;
 import com.blahblah.yandextestapp.di.modules.NetworkModule;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
+import com.blahblah.yandextestapp.ui.translation.TranslationFragment;
 
 import javax.inject.Singleton;
 
@@ -18,4 +19,6 @@ import dagger.Component;
 @Component(modules = {ContextModule.class, DataModule.class, NetworkModule.class, MainActivityModule.class})
 public interface ActivityMainComponent {
     void inject(MainActivity mainActivity);
+
+    void inject(TranslationFragment translationFragment);
 }
