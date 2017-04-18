@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class=".binding.translation.ListItemBinding">
+
+        <variable
+            name="lisItem"
+            type="com.blahblah.yandextestapp.domain.translation.Translation" />
+
+    </data>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_translation_height"
+        android:background="@drawable/bg_stroke_gray_bottom">
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/list_item_translation_favorite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/list_item_translation_margin_x"
+            android:layout_marginRight="@dimen/list_item_translation_margin_x"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            tools:src="@drawable/ic_bookmark_black_24dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/list_item_translation_language"
+            android:layout_toStartOf="@+id/list_item_translation_language"
+            android:layout_toRightOf="@+id/list_item_translation_favorite_btn"
+            android:layout_toEndOf="@+id/list_item_translation_favorite_btn">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_medium"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="streamline"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="оптимизация" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/list_item_translation_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/text_small"
+            android:layout_marginLeft="@dimen/list_item_translation_margin_x"
+            android:layout_marginRight="@dimen/list_item_translation_margin_x"
+            android:layout_centerVertical="true"
+            android:textAllCaps="true"
+            tools:text="en - ru"/>
+
+    </RelativeLayout>
+
+</layout>

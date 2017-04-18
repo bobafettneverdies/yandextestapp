@@ -11,4 +11,8 @@
     <dimen name="translation_input_height">100dp</dimen>
     <dimen name="translation_input_margin">8dp</dimen>
     <dimen name="translation_input_padding">8dp</dimen>
+    <dimen name="translation_result_margin_y">8dp</dimen>
+    <dimen name="translation_result_margin_x">16dp</dimen>
+    <dimen name="list_item_translation_height">72dp</dimen>
+    <dimen name="list_item_translation_margin_x">16dp</dimen>
 </resources>
