@@ -31,7 +31,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     private AppCompatEditText translationInput;
     private AppCompatTextView translationResultView;
     private Timer translateTimer;
-    private final long TRANSLATE_DELAY_IN_MS = 1000;
+    private static final long TRANSLATE_DELAY_IN_MS = 1000;
 
     @Inject
     TranslationPresenter presenter;
