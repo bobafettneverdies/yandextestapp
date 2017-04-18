@@ -12,7 +12,7 @@ import io.realm.annotations.PrimaryKey;
 public class Translation implements RealmModel, Comparable<Translation> {
 
     @PrimaryKey
-    public int id;
+    public long id;
 
     public String source;
 
