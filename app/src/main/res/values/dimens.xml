@@ -8,11 +8,17 @@
     <dimen name="text_medium">16sp</dimen>
     <dimen name="text_large">20sp</dimen>
     <dimen name="text_xlarge">24sp</dimen>
+
+    <dimen name="header_height">64dp</dimen>
+
     <dimen name="translation_input_height">100dp</dimen>
     <dimen name="translation_input_margin">8dp</dimen>
     <dimen name="translation_input_padding">8dp</dimen>
     <dimen name="translation_result_margin_y">8dp</dimen>
     <dimen name="translation_result_margin_x">16dp</dimen>
+    <dimen name="translation_swap_languages_btn_padding">4dp</dimen>
+    <dimen name="translation_swap_languages_btn_margin">16dp</dimen>
+
     <dimen name="list_item_translation_height">72dp</dimen>
     <dimen name="list_item_translation_margin_x">16dp</dimen>
 </resources>

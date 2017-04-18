@@ -8,14 +8,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="16dp">
+        android:layout_height="@dimen/header_height"
+        android:background="@color/colorPrimary">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/translation_src_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/translation_swap_languages_btn"
             android:layout_toStartOf="@+id/translation_swap_languages_btn"
             android:clickable="true"
@@ -28,8 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/translation_swap_languages_btn_padding"
+            android:layout_marginLeft="@dimen/translation_swap_languages_btn_margin"
+            android:layout_marginRight="@dimen/translation_swap_languages_btn_margin"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_arrow_white_24dp" />
 
@@ -37,6 +39,7 @@
             android:id="@+id/translation_dst_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/translation_swap_languages_btn"
             android:layout_toRightOf="@+id/translation_swap_languages_btn"
             android:clickable="true"
