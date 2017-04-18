@@ -30,6 +30,11 @@ public class Translation implements RealmModel, Comparable<Translation> {
         return String.format("%s - %s", srcLanguage, dstLanguage);
     }
 
+    public boolean containsThatTranslation(Translation that) {
+        return srcLanguage.equals(that.srcLanguage) && dstLanguage.equals(that.dstLanguage) &&
+                source.contains(that.source);
+    }
+
     @Override
     public int compareTo(@NonNull Translation o) {
         if (time > o.time) {

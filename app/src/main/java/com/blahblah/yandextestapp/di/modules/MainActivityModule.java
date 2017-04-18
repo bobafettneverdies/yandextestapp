@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.api.ApiProvider;
+import com.blahblah.yandextestapp.realm.RealmTranslationRepository;
 import com.blahblah.yandextestapp.ui.history.HistoryFragment;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
 import com.blahblah.yandextestapp.ui.main.MainRouter;
@@ -38,8 +39,9 @@ public class MainActivityModule {
     @Singleton
     @NonNull
     TranslationPresenter provideTranslationPresenter(@NonNull ApiProvider apiProvider,
-                                                     @NonNull MainRouter mainRouter) {
-        return new TranslationPresenter(apiProvider, mainRouter.getTranslationFragment());
+                                                     @NonNull MainRouter mainRouter,
+                                                     @NonNull RealmTranslationRepository repository) {
+        return new TranslationPresenter(apiProvider, mainRouter.getTranslationFragment(), repository);
     }
 
 }
