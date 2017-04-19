@@ -2,4 +2,7 @@
     <string name="app_name" translatable="false">Yandex Test App</string>
     <string name="title_translate">Translate</string>
     <string name="title_history">History</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="find_in_the_history">Find in the history</string>
+    <string name="find_in_the_favorites">Find in the favorites</string>
 </resources>

@@ -2,4 +2,7 @@
 <resources>
     <string name="title_translate">Перевод</string>
     <string name="title_history">История</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="find_in_the_history">Найти в истории</string>
+    <string name="find_in_the_favorites">Найти в избранном</string>
 </resources>
