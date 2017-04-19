@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/history_search_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_stroke_gray_bottom"
+        android:textSize="@dimen/text_medium"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_search_black_24dp"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        tools:hint="Найти в истории"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/history_translation_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        tools:listitem="@layout/list_item_translation" />
+
+</LinearLayout>
