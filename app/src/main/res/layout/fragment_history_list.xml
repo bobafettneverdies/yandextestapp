@@ -12,6 +12,7 @@
         android:background="@drawable/bg_stroke_gray_bottom"
         android:textSize="@dimen/text_medium"
         android:textColor="@color/black"
+        android:inputType="textImeMultiLine"
         android:drawableLeft="@drawable/ic_search_black_24dp"
         android:drawableStart="@drawable/ic_search_black_24dp"
         tools:hint="Найти в истории"/>
