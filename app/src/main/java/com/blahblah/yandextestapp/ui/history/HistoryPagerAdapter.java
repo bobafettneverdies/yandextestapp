@@ -21,7 +21,7 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return HistoryListFragment.newInstance(position == 1);
     }
 
     @Override
