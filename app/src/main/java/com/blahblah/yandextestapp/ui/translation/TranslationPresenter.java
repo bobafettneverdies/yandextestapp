@@ -56,18 +56,9 @@ public class TranslationPresenter {
                 .subscribe(new EmptySubscriber<>());
     }
 
-    public void swapLanguages() {
-        if (languageHub != null && translation.srcLanguage != null && translation.dstLanguage != null) {
-            String oldDstLanguage = translation.dstLanguage;
-            translation.dstLanguage = translation.srcLanguage;
-            translation.srcLanguage = oldDstLanguage;
-            setLanguagesOnView();
-            translationView.setSourceText(translation.result);
-        }
-    }
-
     public void translate(String source) {
         if (translation.srcLanguage != null && translation.dstLanguage != null) {
+            translation.source = source;
             apiProvider.translate(source, translation.srcLanguage, translation.dstLanguage, null, null)
                     .subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
@@ -78,16 +69,18 @@ public class TranslationPresenter {
                             TranslationDto translationDto = response.body();
                             translation.result = translationDto.toString();
 
-                            if (translationRepository.translationsExists()) {
-                                Translation latestTranslation = translationRepository.getLatest();
-                                if (translation.containsThatTranslation(latestTranslation)) {
-                                    translation.id = latestTranslation.id;
-                                    translationRepository.update(translation);
-                                } else if (!latestTranslation.containsThatTranslation(translation)) {
+                            if (!translation.source.isEmpty()) {
+                                if (translationRepository.translationsExists()) {
+                                    Translation latestTranslation = translationRepository.getLatest();
+                                    if (translation.containsThatTranslation(latestTranslation)) {
+                                        translation.id = latestTranslation.id;
+                                        translationRepository.update(translation);
+                                    } else if (!latestTranslation.containsThatTranslation(translation)) {
+                                        translationRepository.add(translation);
+                                    }
+                                } else {
                                     translationRepository.add(translation);
                                 }
-                            } else {
-                                translationRepository.add(translation);
                             }
                         } else {
                             translation.result = "";
@@ -95,6 +88,16 @@ public class TranslationPresenter {
                         translationView.setTranslation(translation.result);
                     })
                     .subscribe(new EmptySubscriber<>());
+        }
+    }
+
+    public void swapLanguages() {
+        if (languageHub != null && translation.srcLanguage != null && translation.dstLanguage != null) {
+            String oldDstLanguage = translation.dstLanguage;
+            translation.dstLanguage = translation.srcLanguage;
+            translation.srcLanguage = oldDstLanguage;
+            setLanguagesOnView();
+            translationView.setSourceText(translation.result);
         }
     }
 
