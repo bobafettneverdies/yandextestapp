@@ -2,14 +2,14 @@ package com.blahblah.yandextestapp.domain.translation;
 
 import android.support.annotation.NonNull;
 
-import io.realm.RealmModel;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by 123 on 13.04.2017.
  */
 
-public class Translation implements RealmModel, Comparable<Translation> {
+public class Translation extends RealmObject implements Comparable<Translation> {
 
     @PrimaryKey
     public long id;
