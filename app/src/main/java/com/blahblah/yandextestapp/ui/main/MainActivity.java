@@ -3,6 +3,7 @@ package com.blahblah.yandextestapp.ui.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuItem;
 
 import com.blahblah.yandextestapp.R;
@@ -36,6 +37,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         component = DaggerActivityMainComponent.builder()
                 .contextModule(new ContextModule(this))

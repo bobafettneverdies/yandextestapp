@@ -20,7 +20,6 @@
     </style>
 
     <style name="History.Tabs.Style" parent="Widget.Design.TabLayout">
-        <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
         <item name="tabGravity">center</item>
         <item name="tabIndicatorColor">@color/white</item>
         <item name="tabIndicatorHeight">2dp</item>
@@ -28,7 +27,7 @@
         <item name="tabPaddingEnd">12dp</item>
         <item name="tabBackground">@android:color/transparent</item>
         <item name="tabTextAppearance">@style/History.Tabs.TextStyle</item>
-        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+        <item name="tabSelectedTextColor">@color/white</item>
     </style>
 
     <style name="History.Tabs.TextStyle" parent="TextAppearance.Design.Tab">

@@ -1,8 +1,11 @@
 package com.blahblah.yandextestapp.ui.history;
 
 import android.support.annotation.NonNull;
+import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.blahblah.yandextestapp.R;
@@ -34,7 +37,10 @@ public class HistoryListFragment extends BaseFragment {
     protected void onViewInflated(@NonNull View view) {
         searchInput = (AppCompatEditText) view.findViewById(R.id.history_search_input);
         searchInput.setHint(showFavoritesOnly ? R.string.find_in_the_favorites : R.string.find_in_the_history);
-        
+        VectorDrawableCompat drawableCompat= VectorDrawableCompat.create(getActivity().getResources(), R.drawable.ic_search_black_24dp, getContext().getTheme());
+        drawableCompat.setBounds( 0, 0, drawableCompat.getIntrinsicWidth(), drawableCompat.getIntrinsicHeight());
+        searchInput.setCompoundDrawables(drawableCompat, null, null, null);
+
         translationList = (RecyclerView) view.findViewById(R.id.history_translation_list);
     }
 }

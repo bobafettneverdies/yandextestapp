@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.blahblah.yandextestapp.ui.translation.TranslationFragment;
+
 /**
  * Created by Dmitrii Komiakov on 19.04.2017.
  */

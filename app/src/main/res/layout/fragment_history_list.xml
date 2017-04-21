@@ -12,10 +12,10 @@
         android:background="@drawable/bg_stroke_gray_bottom"
         android:textSize="@dimen/text_medium"
         android:textColor="@color/black"
-        android:inputType="textImeMultiLine"
-        android:drawableLeft="@drawable/ic_search_black_24dp"
-        android:drawableStart="@drawable/ic_search_black_24dp"
-        tools:hint="@string/find_in_the_history"/>
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        tools:hint="@string/find_in_the_history"
+        tools:drawableLeft="@drawable/ic_search_black_24dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/history_translation_list"
@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:orientation="vertical"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:listitem="@layout/list_item_translation" />
 
 </LinearLayout>
