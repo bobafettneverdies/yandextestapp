@@ -60,6 +60,10 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Keyboa
         return result;
     }
 
+    protected void hideKeyBoard() {
+        keyboardVisibilityTracker.hideKeyBoard(this);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();

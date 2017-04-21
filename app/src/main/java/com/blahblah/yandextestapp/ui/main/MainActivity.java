@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        hideKeyBoard();
         switch (item.getItemId()) {
             case R.id.navigation_translate:
                 mainRouter.openTranslationFragment();
