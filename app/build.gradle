@@ -70,7 +70,6 @@ buildscript {
     dependencies {
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
         classpath 'me.tatarka:gradle-retrolambda:3.6.0'
-        classpath "io.realm:realm-gradle-plugin:3.1.2"
     }
 }
 
