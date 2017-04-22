@@ -26,7 +26,7 @@
                 android:layout_marginRight="@dimen/list_item_translation_margin_x"
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
-                android:src="@{lisItem.isFavorite ? R.drawable.ic_bookmark_yellow_24dp : R.drawable.ic_bookmark_black_24dp}"
+                android:src="@{lisItem.getIconRes()}"
                 tools:src="@drawable/ic_bookmark_black_24dp"/>
 
             <LinearLayout

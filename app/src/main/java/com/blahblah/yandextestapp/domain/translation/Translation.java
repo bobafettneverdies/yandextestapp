@@ -1,6 +1,9 @@
 package com.blahblah.yandextestapp.domain.translation;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+
+import com.blahblah.yandextestapp.R;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -28,6 +31,11 @@ public class Translation extends RealmObject implements Comparable<Translation> 
 
     public String getLang() {
         return String.format("%s - %s", srcLanguage, dstLanguage);
+    }
+
+    @DrawableRes
+    public int getIconRes() {
+        return isFavorite ? R.drawable.ic_bookmark_yellow_24dp : R.drawable.ic_bookmark_black_24dp;
     }
 
     public boolean containsThatTranslation(Translation that) {
