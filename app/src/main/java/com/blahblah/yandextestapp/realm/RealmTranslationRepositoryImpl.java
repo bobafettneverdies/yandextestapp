@@ -50,6 +50,16 @@ public class RealmTranslationRepositoryImpl implements RealmTranslationRepositor
     }
 
     @Override
+    public RealmResults<Translation> searchInFavorites(String text) {
+        return baseQuery()
+                .equalTo("isFavorite", true)
+                .contains("source", text)
+                .or()
+                .contains("result", text)
+                .findAllSorted("time", Sort.DESCENDING);
+    }
+
+    @Override
     public Translation getLatest() {
         long lastTranslationTime = realm.where(Translation.class).max("time").longValue();
         return baseQuery()

@@ -18,6 +18,8 @@ public interface RealmTranslationRepository {
 
     RealmResults<Translation> search(String text);
 
+    RealmResults<Translation> searchInFavorites(String text);
+
     Translation getLatest();
 
     void add(Translation translation);
