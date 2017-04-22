@@ -1,4 +1,4 @@
-package com.blahblah.yandextestapp.utils;
+package com.blahblah.yandextestapp.utils.realm;
 
 import io.realm.RealmBaseAdapter;
 import io.realm.RealmObject;
