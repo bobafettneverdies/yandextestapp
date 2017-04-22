@@ -9,7 +9,7 @@
     <dimen name="text_large">20sp</dimen>
     <dimen name="text_xlarge">24sp</dimen>
 
-    <dimen name="header_height">64dp</dimen>
+    <dimen name="header_height">56dp</dimen>
 
     <dimen name="translation_input_height">100dp</dimen>
     <dimen name="translation_input_margin">8dp</dimen>
