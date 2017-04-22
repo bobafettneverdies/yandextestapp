@@ -26,6 +26,7 @@
                 android:layout_marginRight="@dimen/list_item_translation_margin_x"
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
+                android:src="@{lisItem.isFavorite ? R.drawable.ic_bookmark_yellow_24dp : R.drawable.ic_bookmark_black_24dp}"
                 tools:src="@drawable/ic_bookmark_black_24dp"/>
 
             <LinearLayout
@@ -45,6 +46,7 @@
                     android:textColor="@color/black"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:text="@{lisItem.source}"
                     tools:text="streamline"/>
 
                 <android.support.v7.widget.AppCompatTextView
@@ -53,6 +55,7 @@
                     android:textSize="@dimen/text_small"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:text="@{lisItem.result}"
                     tools:text="оптимизация" />
 
             </LinearLayout>
@@ -68,6 +71,7 @@
                 android:layout_marginRight="@dimen/list_item_translation_margin_x"
                 android:layout_centerVertical="true"
                 android:textAllCaps="true"
+                android:text="@{lisItem.getLang()}"
                 tools:text="en - ru"/>
 
         </RelativeLayout>
