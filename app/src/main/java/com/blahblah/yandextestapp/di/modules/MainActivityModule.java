@@ -7,6 +7,7 @@ import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.realm.RealmTranslationRepository;
 import com.blahblah.yandextestapp.ui.history.HistoryFragment;
+import com.blahblah.yandextestapp.ui.history.HistoryListPresenter;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
 import com.blahblah.yandextestapp.ui.main.MainRouter;
 import com.blahblah.yandextestapp.ui.main.MainRouterImpl;
@@ -42,6 +43,13 @@ public class MainActivityModule {
                                                      @NonNull MainRouter mainRouter,
                                                      @NonNull RealmTranslationRepository repository) {
         return new TranslationPresenter(apiProvider, mainRouter.getTranslationFragment(), repository);
+    }
+
+    @Provides
+    @Singleton
+    @NonNull
+    HistoryListPresenter provideHistoryListPresenter(@NonNull RealmTranslationRepository repository) {
+        return new HistoryListPresenter(repository);
     }
 
 }

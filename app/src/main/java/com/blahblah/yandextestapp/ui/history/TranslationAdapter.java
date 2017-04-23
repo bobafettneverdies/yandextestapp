@@ -54,6 +54,7 @@ public class TranslationAdapter extends RealmRecyclerViewAdapter<Translation, Tr
         public TranslationViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ListItemBinding.bind(itemView);
+            binding.listItemTranslationFavoriteBtn.setOnClickListener(this);
         }
 
         @Override

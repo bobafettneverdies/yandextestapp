@@ -4,6 +4,7 @@ import com.blahblah.yandextestapp.di.modules.ContextModule;
 import com.blahblah.yandextestapp.di.modules.DataModule;
 import com.blahblah.yandextestapp.di.modules.MainActivityModule;
 import com.blahblah.yandextestapp.di.modules.NetworkModule;
+import com.blahblah.yandextestapp.ui.history.HistoryListFragment;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
 import com.blahblah.yandextestapp.ui.translation.TranslationFragment;
 
@@ -21,4 +22,6 @@ public interface ActivityMainComponent {
     void inject(MainActivity mainActivity);
 
     void inject(TranslationFragment translationFragment);
+
+    void inject(HistoryListFragment historyListFragment);
 }

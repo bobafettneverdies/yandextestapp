@@ -17,10 +17,10 @@ public class ViewHolder<E> extends RecyclerView.ViewHolder implements View.OnCli
     public interface OnHolderClickListener<E> {
         void onHolderClick(ViewHolder<E> holder);
         //поведение как у Fragment.onOptionsItemSelected;
-        boolean onHolderElementClick(View view);
+        boolean onHolderElementClick(View view, ViewHolder<E> holder);
     }
 
-    private E data;
+    public E data;
     private OnHolderClickListener<E> onHolderClickListener;
 
     public ViewHolder(@NonNull final View itemView) {
@@ -39,7 +39,7 @@ public class ViewHolder<E> extends RecyclerView.ViewHolder implements View.OnCli
 
     @Override
     public void onClick(@NonNull View view) {
-        if (onHolderClickListener != null && !onHolderClickListener.onHolderElementClick(itemView)) {
+        if (onHolderClickListener != null && !onHolderClickListener.onHolderElementClick(itemView, this)) {
             onHolderClickListener.onHolderClick(this);
         }
     }
