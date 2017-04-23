@@ -29,7 +29,7 @@ public class RealmTranslationRepositoryImpl implements RealmTranslationRepositor
     }
 
     @Override
-    public Translation get(String id) {
+    public Translation get(long id) {
         return baseQuery().equalTo("id", id).findFirst();
     }
 
@@ -79,6 +79,13 @@ public class RealmTranslationRepositoryImpl implements RealmTranslationRepositor
     public void update(Translation translation) {
         translation.time = System.currentTimeMillis();
         addOrUpdate(translation);
+    }
+
+    @Override
+    public void update(Translation data, TranslationUpdater translationUpdater) {
+        realm.beginTransaction();
+        translationUpdater.updateData(data);
+        realm.commitTransaction();
     }
 
     @Override

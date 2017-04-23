@@ -27,7 +27,6 @@ public class HistoryListPresenter {
     }
 
     public void setFavorite(Translation translation) {
-        translation.isFavorite = !translation.isFavorite;
-        translationRepository.update(translation);
+        translationRepository.update(translation, data -> data.isFavorite = !data.isFavorite);
     }
 }

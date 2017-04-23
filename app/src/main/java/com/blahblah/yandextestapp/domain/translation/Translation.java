@@ -35,7 +35,7 @@ public class Translation extends RealmObject implements Comparable<Translation> 
 
     @DrawableRes
     public int getIconRes() {
-        return isFavorite ? R.drawable.ic_bookmark_yellow_24dp : R.drawable.ic_bookmark_black_24dp;
+        return isFavorite ? R.drawable.ic_bookmark_blue_24dp : R.drawable.ic_bookmark_black_24dp;
     }
 
     public boolean containsThatTranslation(Translation that) {
