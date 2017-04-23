@@ -1,11 +1,7 @@
 package com.blahblah.yandextestapp.ui.history;
 
-import android.view.View;
-
-import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.domain.translation.Translation;
 import com.blahblah.yandextestapp.realm.RealmTranslationRepository;
-import com.blahblah.yandextestapp.ui.translation.TranslationView;
 
 import javax.inject.Inject;
 
@@ -30,7 +26,7 @@ public class HistoryListPresenter {
         return showFavoritesOnly ? translationRepository.getFavorites() : translationRepository.getAll();
     }
 
-    public void updateFavoriteStatus(Translation translation) {
+    public void setFavorite(Translation translation) {
         translation.isFavorite = !translation.isFavorite;
         translationRepository.update(translation);
     }

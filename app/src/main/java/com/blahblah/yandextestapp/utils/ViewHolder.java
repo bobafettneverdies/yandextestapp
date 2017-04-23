@@ -15,9 +15,7 @@ import android.view.View;
 public class ViewHolder<E> extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public interface OnHolderClickListener<E> {
-        void onHolderClick(ViewHolder<E> holder);
-        //поведение как у Fragment.onOptionsItemSelected;
-        boolean onHolderElementClick(View view, ViewHolder<E> holder);
+        void onHolderClick(View view, ViewHolder<E> holder);
     }
 
     public E data;
@@ -25,7 +23,6 @@ public class ViewHolder<E> extends RecyclerView.ViewHolder implements View.OnCli
 
     public ViewHolder(@NonNull final View itemView) {
         super(itemView);
-        this.itemView.setOnClickListener(this);
     }
 
     public void setOnHolderClickListener(@Nullable OnHolderClickListener<E> onHolderClickListener) {
@@ -39,8 +36,8 @@ public class ViewHolder<E> extends RecyclerView.ViewHolder implements View.OnCli
 
     @Override
     public void onClick(@NonNull View view) {
-        if (onHolderClickListener != null && !onHolderClickListener.onHolderElementClick(itemView, this)) {
-            onHolderClickListener.onHolderClick(this);
+        if (onHolderClickListener != null) {
+            onHolderClickListener.onHolderClick(view, this);
         }
     }
 

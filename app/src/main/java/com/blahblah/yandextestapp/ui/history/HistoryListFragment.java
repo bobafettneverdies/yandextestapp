@@ -59,19 +59,16 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
     }
 
     @Override
-    public void onHolderClick(ViewHolder holder) {
-        //todo
-    }
-
-    @Override
-    public boolean onHolderElementClick(View view, ViewHolder holder) {
+    public void onHolderClick(View view, ViewHolder holder) {
         switch (view.getId()) {
             case R.id.list_item_translation_favorite_btn:
-                Log.d(TAG, "onHolderElementClick: ");
-                presenter.updateFavoriteStatus((Translation) holder.data);
-                return true;
+                presenter.setFavorite((Translation) holder.data);
+                break;
+            case R.id.list_item_translation_background:
+                //todo
+                break;
             default:
-                return false;
+                break;
         }
     }
 }

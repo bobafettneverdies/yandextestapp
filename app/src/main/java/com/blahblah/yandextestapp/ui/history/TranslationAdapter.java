@@ -54,13 +54,14 @@ public class TranslationAdapter extends RealmRecyclerViewAdapter<Translation, Tr
         public TranslationViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ListItemBinding.bind(itemView);
-            binding.listItemTranslationFavoriteBtn.setOnClickListener(this);
         }
 
         @Override
         public void fill(@NonNull Translation data) {
             super.fill(data);
             binding.setLisItem(data);
+            binding.listItemTranslationFavoriteBtn.setOnClickListener(this);
+            binding.listItemTranslationBackground.setOnClickListener(this);
         }
     }
 }

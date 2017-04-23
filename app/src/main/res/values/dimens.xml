@@ -21,4 +21,6 @@
 
     <dimen name="list_item_translation_height">72dp</dimen>
     <dimen name="list_item_translation_margin_x">16dp</dimen>
+    <dimen name="list_item_translation_favorite_btn_margin">8dp</dimen>
+    <dimen name="list_item_translation_favorite_btn_padding">8dp</dimen>
 </resources>

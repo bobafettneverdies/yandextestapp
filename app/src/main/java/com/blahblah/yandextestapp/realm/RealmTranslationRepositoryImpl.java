@@ -77,7 +77,7 @@ public class RealmTranslationRepositoryImpl implements RealmTranslationRepositor
 
     @Override
     public void update(Translation translation) {
-        translation.time = System.currentTimeMillis();;
+        translation.time = System.currentTimeMillis();
         addOrUpdate(translation);
     }
 
