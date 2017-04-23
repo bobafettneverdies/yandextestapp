@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
@@ -19,7 +21,7 @@ import javax.inject.Inject;
  * Created by Dmitrii Komiakov on 19.04.2017.
  */
 
-public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHolderClickListener {
+public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHolderClickListener, TextWatcher {
 
     @Inject
     HistoryListPresenter presenter;
@@ -50,6 +52,7 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
         VectorDrawableCompat drawableCompat= VectorDrawableCompat.create(getActivity().getResources(), R.drawable.ic_search_black_24dp, getContext().getTheme());
         drawableCompat.setBounds( 0, 0, drawableCompat.getIntrinsicWidth(), drawableCompat.getIntrinsicHeight());
         searchInput.setCompoundDrawables(drawableCompat, null, null, null);
+        searchInput.addTextChangedListener(this);
 
         translationList = (RecyclerView) view.findViewById(R.id.history_translation_list);
         translationList.setHasFixedSize(true);
@@ -70,5 +73,20 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
             default:
                 break;
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        adapter.updateData(presenter.getSearchResultsFor(s.toString(), showFavoritesOnly));
     }
 }

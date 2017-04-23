@@ -55,6 +55,7 @@ public class RealmTranslationRepositoryImpl implements RealmTranslationRepositor
                 .equalTo("isFavorite", true)
                 .contains("source", text)
                 .or()
+                .equalTo("isFavorite", true)
                 .contains("result", text)
                 .findAllSorted("time", Sort.DESCENDING);
     }

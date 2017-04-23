@@ -26,6 +26,12 @@ public class HistoryListPresenter {
         return showFavoritesOnly ? translationRepository.getFavorites() : translationRepository.getAll();
     }
 
+    public RealmResults<Translation> getSearchResultsFor(String text, boolean showFavoritesOnly) {
+        return text == null || text.isEmpty() ?
+                getData(showFavoritesOnly) :
+                (showFavoritesOnly ? translationRepository.searchInFavorites(text) : translationRepository.search(text));
+    }
+
     public void setFavorite(Translation translation) {
         translationRepository.update(translation, data -> data.isFavorite = !data.isFavorite);
     }
