@@ -53,6 +53,7 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
         drawableCompat.setBounds( 0, 0, drawableCompat.getIntrinsicWidth(), drawableCompat.getIntrinsicHeight());
         searchInput.setCompoundDrawables(drawableCompat, null, null, null);
         searchInput.addTextChangedListener(this);
+        searchInput.setOnFocusChangeListener((v, hasFocus) -> hideKeyBoard());
 
         translationList = (RecyclerView) view.findViewById(R.id.history_translation_list);
         translationList.setHasFixedSize(true);
