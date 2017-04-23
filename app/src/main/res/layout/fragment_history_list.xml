@@ -14,6 +14,7 @@
         android:textColor="@color/black"
         android:inputType="textCapWords"
         android:maxLines="1"
+        android:imeOptions="actionDone"
         tools:hint="@string/find_in_the_history"
         tools:drawableLeft="@drawable/ic_search_black_24dp"/>
 

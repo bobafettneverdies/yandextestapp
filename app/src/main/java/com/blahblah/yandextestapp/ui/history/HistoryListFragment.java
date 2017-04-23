@@ -6,7 +6,6 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 
 import com.blahblah.yandextestapp.R;
@@ -53,7 +52,6 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
         drawableCompat.setBounds( 0, 0, drawableCompat.getIntrinsicWidth(), drawableCompat.getIntrinsicHeight());
         searchInput.setCompoundDrawables(drawableCompat, null, null, null);
         searchInput.addTextChangedListener(this);
-        searchInput.setOnFocusChangeListener((v, hasFocus) -> hideKeyBoard());
 
         translationList = (RecyclerView) view.findViewById(R.id.history_translation_list);
         translationList.setHasFixedSize(true);
