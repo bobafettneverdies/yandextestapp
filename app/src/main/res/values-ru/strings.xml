@@ -5,4 +5,5 @@
     <string name="title_favorites">Избранное</string>
     <string name="find_in_the_history">Найти в истории</string>
     <string name="find_in_the_favorites">Найти в избранном</string>
+    <string name="updating_data">Обновление данных</string>
 </resources>

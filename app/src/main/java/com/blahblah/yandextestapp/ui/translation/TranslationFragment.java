@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.ui.base.BaseFragment;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
@@ -26,12 +27,14 @@ import javax.inject.Inject;
  */
 public class TranslationFragment extends BaseFragment implements TranslationView, View.OnClickListener, TextWatcher {
 
+    private static final long TRANSLATE_DELAY_IN_MS = 1000;
+
     private AppCompatTextView srcLanguageView;
     private AppCompatTextView dstLanguageView;
     private AppCompatEditText translationInput;
     private AppCompatTextView translationResultView;
     private Timer translateTimer;
-    private static final long TRANSLATE_DELAY_IN_MS = 1000;
+    private MaterialDialog progressDialog;
 
     @Inject
     TranslationPresenter presenter;
@@ -82,6 +85,23 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Override
     public void setTranslation(String translation) {
         translationResultView.setText(translation);
+    }
+
+    @Override
+    public void showLanguageHubQueryProgressBar() {
+        MaterialDialog.Builder b = new MaterialDialog.Builder(getContext());
+        b.progress(true, 0);
+        b.content(R.string.updating_data);
+        b.cancelable(false);
+        progressDialog = b.show();
+    }
+
+    @Override
+    public void hideLanguageHubQueryProgressBar() {
+        if (progressDialog != null) {
+            progressDialog.hide();
+        }
+        progressDialog = null;
     }
 
     @Override

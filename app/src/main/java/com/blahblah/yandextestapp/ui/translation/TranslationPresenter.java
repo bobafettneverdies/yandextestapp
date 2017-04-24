@@ -123,6 +123,8 @@ public class TranslationPresenter {
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(translationView::showLanguageHubQueryProgressBar)
+                .doOnUnsubscribe(translationView::hideLanguageHubQueryProgressBar)
                 .doOnError(Throwable::printStackTrace)
                 .doOnNext(response -> {
                     if (response.code() == 200 && response.body() != null) {

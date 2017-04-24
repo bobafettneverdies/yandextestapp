@@ -14,4 +14,8 @@ public interface TranslationView {
     void setSourceText(String text);
 
     void setTranslation(String translation);
+
+    void showLanguageHubQueryProgressBar();
+
+    void hideLanguageHubQueryProgressBar();
 }

@@ -5,4 +5,5 @@
     <string name="title_favorites">Favorites</string>
     <string name="find_in_the_history">Find in the history</string>
     <string name="find_in_the_favorites">Find in the favorites</string>
+    <string name="updating_data">Updating data</string>
 </resources>
