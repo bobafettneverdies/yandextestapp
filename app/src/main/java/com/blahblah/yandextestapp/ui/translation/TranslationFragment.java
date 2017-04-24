@@ -58,9 +58,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
         String uiLanguage = Locale.getDefault().getLanguage();
         if (!TextUtils.equals(uiLanguage, Locale.ENGLISH.getLanguage())) {
-            presenter.getLanguageHub(uiLanguage, Locale.ENGLISH.getLanguage());
+            presenter.syncViewWithPresenterState(uiLanguage, Locale.ENGLISH.getLanguage());
         } else {
-            presenter.getLanguageHub(uiLanguage, Locale.FRENCH.getLanguage());
+            presenter.syncViewWithPresenterState(uiLanguage, Locale.FRENCH.getLanguage());
         }
     }
 

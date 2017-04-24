@@ -1,5 +1,7 @@
 package com.blahblah.yandextestapp.ui.translation;
 
+import android.support.annotation.NonNull;
+
 import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
 import com.blahblah.yandextestapp.domain.translation.Translation;
@@ -37,23 +39,13 @@ public class TranslationPresenter {
         translation = new Translation();
     }
 
-    public void getLanguageHub(String uiLanguage, String enLanguage) {
-        apiProvider.getLanguages(uiLanguage)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(Throwable::printStackTrace)
-                .doOnNext(response -> {
-                    if (response.code() == 200 && response.body() != null) {
-                        this.languageHub = response.body();
-                        if (languageHub.languages.size() > 2) {
-                            translation.srcLanguage = uiLanguage;
-                            translation.dstLanguage = enLanguage;
-                            setLanguagesOnView();
-                        }
-                    }
-                })
-                .subscribe(new EmptySubscriber<>());
+    public void syncViewWithPresenterState(String uiLanguage, String translateLanguage) {
+        if (languageHub == null) {
+            getLanguageHub(uiLanguage, translateLanguage);
+        } else if (translation.srcLanguage != null && translation.dstLanguage != null) {
+            setLanguagesOnView();
+            translationView.setSourceText(translation.source);
+        }
     }
 
     public void translate(String source) {
@@ -99,6 +91,50 @@ public class TranslationPresenter {
             setLanguagesOnView();
             translationView.setSourceText(translation.result);
         }
+    }
+
+    public void setTranslation(@NonNull Translation translation) {
+        this.translation = translation;
+    }
+
+    public void setTranslationSrcLanguage(String language) {
+        if (language.equals(translation.dstLanguage)) {
+            swapLanguages();
+        } else {
+            translation.srcLanguage = language;
+            translation.source = "";
+            setLanguagesOnView();
+            translationView.setSourceText(translation.source);
+        }
+    }
+
+    public void setTranslationDstLanguage(String language) {
+        if (language.equals(translation.srcLanguage)) {
+            swapLanguages();
+        } else {
+            translation.dstLanguage = language;
+            setLanguagesOnView();
+            translationView.setSourceText(translation.source);
+        }
+    }
+
+    private void getLanguageHub(String uiLanguage, String translateLanguage) {
+        apiProvider.getLanguages(uiLanguage)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(Throwable::printStackTrace)
+                .doOnNext(response -> {
+                    if (response.code() == 200 && response.body() != null) {
+                        this.languageHub = response.body();
+                        if (languageHub.languages.size() > 2) {
+                            translation.srcLanguage = uiLanguage;
+                            translation.dstLanguage = translateLanguage;
+                            setLanguagesOnView();
+                        }
+                    }
+                })
+                .subscribe(new EmptySubscriber<>());
     }
 
     private void setLanguagesOnView() {
