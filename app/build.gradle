@@ -108,7 +108,7 @@ dependencies {
     //Realm
     compile 'io.realm:android-adapters:2.0.0'
     //Other
-    compile 'com.afollestad.material-dialogs:core:0.9.3.0'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.4'
     compile 'com.annimon:stream:1.1.5'
     //Tests
     testCompile 'junit:junit:4.12'

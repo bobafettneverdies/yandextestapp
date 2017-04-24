@@ -1,14 +1,16 @@
 package com.blahblah.yandextestapp.ui.translation;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.blahblah.yandextestapp.api.ApiProvider;
+import com.blahblah.yandextestapp.domain.language.Language;
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
 import com.blahblah.yandextestapp.domain.translation.Translation;
 import com.blahblah.yandextestapp.domain.translation.TranslationDto;
 import com.blahblah.yandextestapp.realm.RealmTranslationRepository;
 import com.blahblah.yandextestapp.utils.EmptySubscriber;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -121,6 +123,10 @@ public class TranslationPresenter {
             setLanguagesOnView();
             translationView.setSourceText(translation.source);
         }
+    }
+
+    public List<Language> getLanguageList() {
+        return languageHub != null ? languageHub.getLanguagesAsList() : null;
     }
 
     private void getLanguageHub(String uiLanguage, String translateLanguage) {

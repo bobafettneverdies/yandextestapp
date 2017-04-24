@@ -1,5 +1,6 @@
 package com.blahblah.yandextestapp.ui.translation;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -9,10 +10,14 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
+import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.blahblah.yandextestapp.R;
+import com.blahblah.yandextestapp.domain.language.Language;
 import com.blahblah.yandextestapp.ui.base.BaseFragment;
 import com.blahblah.yandextestapp.ui.main.MainActivity;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,7 +32,7 @@ import javax.inject.Inject;
  */
 public class TranslationFragment extends BaseFragment implements TranslationView, View.OnClickListener, TextWatcher {
 
-    private static final long TRANSLATE_DELAY_IN_MS = 1000;
+    private static final long TRANSLATE_DELAY_IN_MS = 700;
 
     private AppCompatTextView srcLanguageView;
     private AppCompatTextView dstLanguageView;
@@ -58,6 +63,8 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         translationResultView = (AppCompatTextView) view.findViewById(R.id.translation_result_view);
 
         view.findViewById(R.id.translation_swap_languages_btn).setOnClickListener(this);
+        view.findViewById(R.id.translation_src_language).setOnClickListener(this);
+        view.findViewById(R.id.translation_dst_language).setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +121,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
             case R.id.translation_swap_languages_btn:
                 presenter.swapLanguages();
                 break;
+            case R.id.translation_src_language:
+                selectSrcLanguage();
+                break;
+            case R.id.translation_dst_language:
+                selectDstLanguage();
+                break;
             default:
                 break;
         }
@@ -145,5 +158,49 @@ public class TranslationFragment extends BaseFragment implements TranslationView
                 },
                 TRANSLATE_DELAY_IN_MS
         );
+    }
+
+    public void selectSrcLanguage() {
+        List<Language> languages = presenter.getLanguageList();
+
+        if (languages != null) {
+            MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter((dialog, index, item) -> {
+                dialog.hide();
+                presenter.setTranslationSrcLanguage(languages.get(index).getName());
+            });
+
+            for (Language language : languages) {
+                adapter.add(new MaterialSimpleListItem.Builder(getActivity())
+                        .content(language.toString())
+                        .backgroundColor(Color.WHITE)
+                        .build());
+            }
+
+            new MaterialDialog.Builder(getActivity())
+                    .adapter(adapter, null)
+                    .show();
+        }
+    }
+
+    public void selectDstLanguage() {
+        List<Language> languages = presenter.getLanguageList();
+
+        if (languages != null) {
+            MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter((dialog, index, item) -> {
+                dialog.hide();
+                presenter.setTranslationDstLanguage(languages.get(index).getName());
+            });
+
+            for (Language language : languages) {
+                adapter.add(new MaterialSimpleListItem.Builder(getActivity())
+                        .content(language.toString())
+                        .backgroundColor(Color.WHITE)
+                        .build());
+            }
+
+            new MaterialDialog.Builder(getActivity())
+                    .adapter(adapter, null)
+                    .show();
+        }
     }
 }
