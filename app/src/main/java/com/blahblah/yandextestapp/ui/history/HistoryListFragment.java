@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHolderClickListener, TextWatcher {
 
     @Inject
-    HistoryListPresenter presenter;
+    HistoryPresenter presenter;
 
     private AppCompatEditText searchInput;
     private RecyclerView translationList;
@@ -67,7 +67,7 @@ public class HistoryListFragment extends BaseFragment implements ViewHolder.OnHo
                 presenter.setFavorite((Translation) holder.data);
                 break;
             case R.id.list_item_translation_background:
-                //todo
+                presenter.showTranslation((Translation) holder.data);
                 break;
             default:
                 break;

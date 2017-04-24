@@ -1,6 +1,7 @@
 package com.blahblah.yandextestapp.ui.translation;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.blahblah.yandextestapp.api.ApiProvider;
 import com.blahblah.yandextestapp.domain.language.LanguageHub;
@@ -94,7 +95,11 @@ public class TranslationPresenter {
     }
 
     public void setTranslation(@NonNull Translation translation) {
-        this.translation = translation;
+        this.translation.srcLanguage = translation.srcLanguage;
+        this.translation.dstLanguage = translation.dstLanguage;
+        this.translation.source = translation.source;
+        this.translation.id = translation.id;
+        this.translation.isFavorite = translation.isFavorite;
     }
 
     public void setTranslationSrcLanguage(String language) {

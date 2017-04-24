@@ -58,7 +58,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         translationResultView = (AppCompatTextView) view.findViewById(R.id.translation_result_view);
 
         view.findViewById(R.id.translation_swap_languages_btn).setOnClickListener(this);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         String uiLanguage = Locale.getDefault().getLanguage();
         if (!TextUtils.equals(uiLanguage, Locale.ENGLISH.getLanguage())) {
             presenter.syncViewWithPresenterState(uiLanguage, Locale.ENGLISH.getLanguage());

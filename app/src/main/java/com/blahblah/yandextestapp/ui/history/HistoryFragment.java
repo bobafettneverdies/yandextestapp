@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.blahblah.yandextestapp.R;
 import com.blahblah.yandextestapp.ui.base.BaseFragment;
+import com.blahblah.yandextestapp.ui.main.MainActivity;
 
 /**
  * Created by Dmitrii Komiakov
@@ -14,7 +15,7 @@ import com.blahblah.yandextestapp.ui.base.BaseFragment;
  * komyakovds@byndyusoft.com
  * on 14.04.2017.
  */
-public class HistoryFragment extends BaseFragment {
+public class HistoryFragment extends BaseFragment implements HistoryPresenter.HistoryView {
 
     private ViewPager viewPager;
 
@@ -34,5 +35,10 @@ public class HistoryFragment extends BaseFragment {
 
         tabLayout = (TabLayout) view.findViewById(R.id.history_tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void openTranslationView() {
+        ((MainActivity) getActivity()).selectTranslationNavItem();
     }
 }

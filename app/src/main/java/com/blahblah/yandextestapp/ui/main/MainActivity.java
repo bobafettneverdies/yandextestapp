@@ -28,6 +28,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Inject
     ApiProvider apiProvider;
 
+    private BottomNavigationView navigationView;
+
     private ActivityMainComponent component;
 
     public ActivityMainComponent getComponent() {
@@ -49,10 +51,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         component.inject(this);
 
-        BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        mainRouter.openTranslationFragment();
+//        mainRouter.openTranslationFragment();
+        selectTranslationNavItem();
     }
 
     @Override
@@ -77,5 +80,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 return true;
         }
         return false;
+    }
+
+    public void selectTranslationNavItem() {
+        navigationView.setSelectedItemId(R.id.navigation_translate);
     }
 }
